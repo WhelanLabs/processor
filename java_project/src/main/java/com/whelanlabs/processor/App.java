@@ -1,6 +1,9 @@
 package com.whelanlabs.processor;
 
 import java.io.File;
+import java.io.IOException;
+
+import org.codehaus.groovy.control.CompilationFailedException;
 
 import groovy.lang.GroovyClassLoader;
 import groovy.lang.GroovyObject;
@@ -13,20 +16,25 @@ import groovy.lang.GroovyObject;
  */
 public class App {
 
-	private final GroovyClassLoader loader;
+   private final GroovyClassLoader loader;
 
-	public static void main(String[] args) {
-		System.out.println("Hello World!");
-	}
+   public static void main(String[] args) {
+      System.out.println("Hello World!");
+   }
 
-	public Object sayHello(String scriptName)throws Exception {
-		Class<?> calcClass = loader
-				.parseClass(new File("src/main/groovy/com/whelanlabs/processor/scripts/", scriptName));
-		GroovyObject g = (GroovyObject) calcClass.getDeclaredConstructor().newInstance();
-		return (Object) g.invokeMethod("sayHello", new Object[] { 1, "two" });
-	}
+   public void loadGroovy(String scriptName) throws Exception {
+      Class<?> calcClass = loader
+            .parseClass(new File("src/main/groovy/com/whelanlabs/processor/scripts/", scriptName));
+   }
 
-	public App() {
-		loader = new GroovyClassLoader(this.getClass().getClassLoader());
-	}
+   public Object sayHello(String scriptName)throws Exception {
+      Class<?> calcClass = loader
+            .parseClass(new File("src/main/groovy/com/whelanlabs/processor/scripts/", scriptName));
+      GroovyObject g = (GroovyObject) calcClass.getDeclaredConstructor().newInstance();
+      return (Object) g.invokeMethod("sayHello", new Object[] { 1, "two" });
+   }
+
+   public App() {
+      loader = new GroovyClassLoader(this.getClass().getClassLoader());
+   }
 }

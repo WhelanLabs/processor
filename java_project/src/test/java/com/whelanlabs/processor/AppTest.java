@@ -40,9 +40,26 @@ public class AppTest {
     * explicitly loaded, not using the parent classpath.
     */
    @Test
+   public void sayHelloX2_usingHelloMars2_success() throws Exception {
+      App app = new App();
+      app.sayHello("HelloWorld.groovy");
+      String result2 = (String) app.sayHello("HelloMars2.groovy");
+      assert ("hello world from Mars!".equals(result2)) : "result = " + result2;
+   }
+   
+   @Test
    public void sayHello_usingHelloMars2_success() throws Exception {
       App app = new App();
-      String result1 = (String) app.sayHello("HelloWorld.groovy");
+      app.loadGroovy("HelloWorld.groovy");
+      String result2 = (String) app.sayHello("HelloMars2.groovy");
+      assert ("hello world from Mars!".equals(result2)) : "result = " + result2;
+   }
+   
+   @Test
+   public void sayHello_overwriteUsingHelloMars2_success() throws Exception {
+      App app = new App();
+      app.loadGroovy("HelloWorld.groovy");
+      app.sayHello("HelloWorld.groovy");
       String result2 = (String) app.sayHello("HelloMars2.groovy");
       assert ("hello world from Mars!".equals(result2)) : "result = " + result2;
    }
