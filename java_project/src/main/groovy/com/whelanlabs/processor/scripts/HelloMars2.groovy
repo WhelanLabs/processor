@@ -1,4 +1,4 @@
-package com.whelanlabs.processor.scripts
+package com.whelanlabs.processor.scripts;
 
 import com.whelanlabs.processor.type.Planet;
 

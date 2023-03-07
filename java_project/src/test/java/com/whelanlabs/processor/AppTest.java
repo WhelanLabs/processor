@@ -42,7 +42,7 @@ public class AppTest {
    @Test
    public void sayHello_usingHelloMars2_success() throws Exception {
       App app = new App();
-      //String result1 = (String) app.sayHello("HelloWorld.groovy");
+      String result1 = (String) app.sayHello("HelloWorld.groovy");
       String result2 = (String) app.sayHello("HelloMars2.groovy");
       assert ("hello world from Mars!".equals(result2)) : "result = " + result2;
    }
