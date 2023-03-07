@@ -1,8 +1,6 @@
 package com.whelanlabs.processor;
 
 import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 import groovy.lang.GroovyClassLoader;
 import groovy.lang.GroovyObject;
@@ -10,8 +8,8 @@ import groovy.lang.GroovyObject;
 /**
  * Hello world!
  *
- * see: https://www.baeldung.com/groovy-java-applications see:
- * https://docs.groovy-lang.org/latest/html/documentation/guide-integrating.html
+ * see: https://www.baeldung.com/groovy-java-applications 
+ * see: https://docs.groovy-lang.org/latest/html/documentation/guide-integrating.html
  */
 public class App {
 
@@ -21,11 +19,11 @@ public class App {
 		System.out.println("Hello World!");
 	}
 
-	private Double addWithGroovyClassLoader(int x, int y)
-			throws IllegalAccessException, InstantiationException, IOException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		Class<?> calcClass = loader.parseClass(new File("src/main/groovy/com/baeldung/", "CalcMath.groovy"));
-		GroovyObject calc = (GroovyObject) calcClass.getDeclaredConstructor().newInstance();
-		return (Double) calc.invokeMethod("calcSum", new Object[] { x, y });
+	public Object sayHello(String scriptName)throws Exception {
+		Class<?> calcClass = loader
+				.parseClass(new File("src/main/groovy/com/whelanlabs/processor/scripts/", scriptName));
+		GroovyObject g = (GroovyObject) calcClass.getDeclaredConstructor().newInstance();
+		return (Object) g.invokeMethod("sayHello", new Object[] { 1, "two" });
 	}
 
 	public App() {
