@@ -1,5 +1,5 @@
 # logic_engine
-An engine for running scripts within a JVM.
+A proof-of-concept of a Groovy script processing engine for running scripts within a parent application.
 
 # Build Commands
    
