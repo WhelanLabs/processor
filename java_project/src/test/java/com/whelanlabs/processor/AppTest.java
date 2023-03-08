@@ -29,7 +29,7 @@ public class AppTest {
    public void sayHello_usingHelloWorld_success() throws Exception {
       App app = new App();
       String result = (String) app.sayHello("HelloWorld.groovy");
-      assert ("hello world".equals(result)) : "result = " + result;
+      assert ("hello world!".equals(result)) : "result = " + result;
    }
    
    @Test
@@ -47,7 +47,7 @@ public class AppTest {
       App app = new App();
       app.sayHello("HelloWorld.groovy");
       String result2 = (String) app.sayHello("HelloMars2.groovy");
-      assert ("hello world from Mars!".equals(result2)) : "result = " + result2;
+      assert ("hello world! from Mars!".equals(result2)) : "result = " + result2;
    }
    
    @Test
@@ -55,7 +55,7 @@ public class AppTest {
       App app = new App();
       app.loadGroovy("HelloWorld.groovy");
       String result2 = (String) app.sayHello("HelloMars2.groovy");
-      assert ("hello world from Mars!".equals(result2)) : "result = " + result2;
+      assert ("hello world! from Mars!".equals(result2)) : "result = " + result2;
    }
    
    @Test
@@ -64,7 +64,7 @@ public class AppTest {
       app.loadGroovy("HelloWorld.groovy");
       app.sayHello("HelloWorld.groovy");
       String result2 = (String) app.sayHello("HelloMars2.groovy");
-      assert ("hello world from Mars!".equals(result2)) : "result = " + result2;
+      assert ("hello world! from Mars!".equals(result2)) : "result = " + result2;
    }
    
    @Test(expected = MultipleCompilationErrorsException.class)
@@ -81,7 +81,7 @@ public class AppTest {
       App app2 = new App();
       app1.loadGroovy("HelloWorld.groovy");
       String result1 = (String) app1.sayHello("HelloMars2.groovy");
-      assert ("hello world from Mars!".equals(result1)) : "result1 = " + result1;
+      assert ("hello world! from Mars!".equals(result1)) : "result1 = " + result1;
       try {
          app2.sayHello("HelloMars2.groovy");
       }

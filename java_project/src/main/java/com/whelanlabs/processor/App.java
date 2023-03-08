@@ -1,16 +1,13 @@
 package com.whelanlabs.processor;
 
 import java.io.File;
-import java.io.IOException;
-
-import org.codehaus.groovy.control.CompilationFailedException;
 
 import groovy.lang.GroovyClassLoader;
 import groovy.lang.GroovyObject;
 
 /**
- * Hello world!
- *
+ * A POC class to have a per-instance script processer with classloader separation.
+ * 
  * see: https://www.baeldung.com/groovy-java-applications 
  * see: https://docs.groovy-lang.org/latest/html/documentation/guide-integrating.html
  */
@@ -23,8 +20,7 @@ public class App {
    }
 
    public void loadGroovy(String scriptName) throws Exception {
-      Class<?> calcClass = loader
-            .parseClass(new File("src/main/groovy/com/whelanlabs/processor/scripts/", scriptName));
+      loader.parseClass(new File("src/main/groovy/com/whelanlabs/processor/scripts/", scriptName));
    }
 
    public Object sayHello(String scriptName)throws Exception {

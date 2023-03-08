@@ -1,11 +1,14 @@
 package com.whelanlabs.processor.scripts;
 
 import com.whelanlabs.processor.type.Planet;
+import com.whelanlabs.processor.Parent;
 
-public class HelloWorld implements Planet {
+
+public class HelloWorld extends Parent implements Planet {
 
    public String sayHello(Object[] args) {
-      return "hello world";
+      String ending = getEnding();
+      return "hello world" + ending;
    }
    
 }
