@@ -1,7 +1,10 @@
 package com.whelanlabs.processor;
 
+import static org.junit.Assert.fail;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.codehaus.groovy.control.MultipleCompilationErrorsException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -62,5 +65,31 @@ public class AppTest {
       app.sayHello("HelloWorld.groovy");
       String result2 = (String) app.sayHello("HelloMars2.groovy");
       assert ("hello world from Mars!".equals(result2)) : "result = " + result2;
+   }
+   
+   @Test(expected = MultipleCompilationErrorsException.class)
+   public void sayHello_helloMars2Missingclass_fail() throws Exception {
+      App app = new App();
+      String result2 = (String) app.sayHello("HelloMars2.groovy");
+      assert ("hello world from Mars!".equals(result2)) : "result = " + result2;
+   }
+   
+   @Test
+   public void sayHello_differentApps_differentResults() throws Exception {
+      boolean allGood = false;
+      App app1 = new App();
+      App app2 = new App();
+      app1.loadGroovy("HelloWorld.groovy");
+      String result1 = (String) app1.sayHello("HelloMars2.groovy");
+      assert ("hello world from Mars!".equals(result1)) : "result1 = " + result1;
+      try {
+         app2.sayHello("HelloMars2.groovy");
+      }
+      catch (MultipleCompilationErrorsException e) {
+         allGood = true;
+      }
+      if(!allGood) {
+         fail("Expected MultipleCompilationErrorsException is missing.");
+      }
    }
 }
